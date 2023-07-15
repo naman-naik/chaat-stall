@@ -1,0 +1,56 @@
+body{
+  background:url(chatStall.jpg) center center fixed;
+  background-size:cover;
+  
+}
+/*.main{
+  padding:20px 0 100px;
+  background-color:rgba(255,255,255,0.4);
+  backdrop-filter:blur(4px);
+}*/
+
+.container{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  
+}
+.item{
+  background-color:rgba(255,255,255,0.4);
+  backdrop-filter:blur(4px);
+  width:300px;
+  padding:40px 20px 50px;
+  font-size:20px;
+  text-align:center;
+  border-radius:20px;
+  margin-right:40px;
+  margin-bottom:40px;
+  
+}
+h1{
+  color:white;
+  text-align:center;
+}
+.button{
+  border:1px solid black;
+  width:100px;
+  padding:5px 10px;
+  margin:auto;
+  background:;
+  cursor:pointer;
+ 
+}
+.button:hover{
+  background:white;
+}
+a{
+  text-decoration:none;
+  color:black;
+}
+input{
+  background-color:rgba(255,255,255,0);
+  //backdrop-filter:blur(4px);
+  border:1px solid black;
+  width:100px;
+}
+

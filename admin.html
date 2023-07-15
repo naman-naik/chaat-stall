@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin Interface</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="styles2.css">
+</head>
+<body>
+<h2>Order Lists</h2><hr>
+<div id="orderList" class="items"></div>
+
+<script>
+  let len = localStorage.length;
+  for(let i=0;i<len;i++){
+    let key = localStorage.key(i);
+    let itemObj = JSON.parse(localStorage.getItem(key));  
+
+    let paniPuri = itemObj["paniPuri"];
+    let sevPuri = itemObj["sevPuri"];
+    let dahiPuri = itemObj["dahiPuri"];
+    let totalPrize = itemObj["totalPrize"];
+    
+    let content = document.getElementById("orderList");
+   content.innerHTML += 
+    `<div class="item" ><h2>${key} has ordered.</h2>
+     <div ><b>Pani Puri</b> <b>${paniPuri}</b> Plates</div><br>
+     <div ><b>Sev Puri</b> <b>${sevPuri}</b> Plates</div><br>
+     <div ><b>Dahi Puri</b> <b>${dahiPuri}</b> Plates</div><br>
+     <div><b>Total Prize : ${totalPrize} ₹</b></div><br>
+      Order Delivered ? <span class="yes" onclick=editOrderList(this.id) id="${key}"><b>Yes</b></span>
+    </div>`; 
+}
+
+if(len==0){
+  document.getElementById("orderList").innerHTML += 
+  `<div class="noOrder"><img src="noOrder.jpg" width="300px"><h3>No Orders Yet. .  .</h3></div>`;
+}
+
+function editOrderList(key){
+  localStorage.removeItem(key);
+  location.reload();
+}
+</script>
+</body>
+</html>

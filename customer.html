@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Customer Interface</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+
+<h2 class="main-head">Welcome to Krishna's Chat Stall</h2>  
+<h3 class="sub-head">Place Your Order Below</h3>
+
+<input type="text" placeholder="Please Enter Your Name here. . " id="name" required >
+<br>
+<br>
+
+<div class="items">
+  <div class="item">
+    <h4 class="item-head">Pani Puri</h4>
+    <img src="panipuri.jpg" width="250px">
+    <div><b>₹ 20 Per Plate</b></div><br>
+    <div>Quantity : 
+    <input type="number" value="0" min="0" id="paniPuriNo" onchange=displayPrize(this.id)>
+    </div><br>
+    <div style="display:none;font-weight:700;" id="paniPuriNoT"></div>
+  </div>
+  <div class="item">
+    <h4 class="item-head">Sev Puri</h4>
+    <img src="sevpuri.jpg" width="250px">
+    <div><b>₹ 30 Per Plate</b></div><br>
+    <div>Quantity : <input type="number" value="0" min="0" id="sevPuriNo" onchange=displayPrize(this.id)>
+    </div><br>
+    <div style="display:none;font-weight:700;" id="sevPuriNoT"></div>
+  </div>
+  <div class="item">
+    <h4 class="item-head">Dahi Puri</h4>
+    <img src="dahipuri.jpg" width="250px">
+    <div><b>₹ 40 Per Plate</b></div><br>
+    <div>Quantity : <input type="number" value="0" min="0" id="dahiPuriNo" onchange=displayPrize(this.id)>
+    </div><br>
+    <div style="display:none;font-weight:700;" id="dahiPuriNoT"></div>
+  </div>
+</div>
+
+<div style="display:none;" id="grandTotal" class="total"></div>
+<div class="button" onclick="placeOrder()"><b>Place Order</b></div>
+
+<br>
+<br>
+<br>
+
+<script>
+var tp;
+function displayPrize(id){
+  
+  let quantity = document.getElementById(id).value;
+  let content = document.getElementById(id+"T");
+
+  if(id=="paniPuriNo"){
+    let paniQuantity = quantity*20;
+    content.innerHTML = "Total : "+ paniQuantity +" ₹";
+    document.getElementById(id+"T").style.display = "block";
+  }
+  else if(id=="sevPuriNo"){
+    let sevQuantity = quantity*30;
+    content.innerHTML = "Total : "+ sevQuantity +" ₹";
+    document.getElementById(id+"T").style.display = "block";
+  }
+  else{
+    let dahiQuantity = quantity*40;
+    content.innerHTML = "Total : "+ dahiQuantity + " ₹";
+    document.getElementById(id+"T").style.display = "block";
+  }
+  
+  let finalTotal = document.getElementById("grandTotal");
+  tp = document.getElementById("paniPuriNo").value *20 + document.getElementById("sevPuriNo").value *30 +document.getElementById("dahiPuriNo").value *40;
+  finalTotal.innerHTML = "Your Final Total Prize Is : " + tp + " ₹";
+  finalTotal.style.display = "block";
+}
+
+
+
+
+function placeOrder(){
+  let paniPuri = document.getElementById("paniPuriNo").value;
+  let sevPuri = document.getElementById("sevPuriNo").value;
+  let dahiPuri = document.getElementById("dahiPuriNo").value;
+  let name = document.getElementById("name").value;
+    
+  if(!name){
+    name = prompt("Please Enter Your Name ");
+  }  
+  
+  let itemObj = {"paniPuri":paniPuri,
+                 "sevPuri":sevPuri,
+                 "dahiPuri":dahiPuri,
+                  "totalPrize":tp};  
+  let itemStr = JSON.stringify(itemObj);
+
+  localStorage.setItem(name, itemStr);
+  alert("Your Order Has Been Placed Seccessfully");
+  location.replace(location.href);
+  
+  /*document.getElementById("paniPuriNo").value = 0;
+  document.getElementById("sevPuriNo").value = 0;
+  document.getElementById("dahiPuriNo").value = 0;
+  document.getElementById("name").value = "";*/
+}
+
+
+
+</script>
+</body>
+</html>
